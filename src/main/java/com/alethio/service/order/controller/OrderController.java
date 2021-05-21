@@ -1,17 +1,24 @@
 package com.alethio.service.order.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import com.alethio.service.order.dto.OrderCreateDto;
+import com.alethio.service.order.service.OrderService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OrderController {
-    @RequestMapping(value = "/api/hadoop", method = RequestMethod.GET)
-    @ResponseStatus(value = HttpStatus.OK)
-    public String getHadoopData() {
-        return "{\"result\":\"ok\"}";
+
+    private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+
+    @PostMapping ("/order")
+    public String OrderItem(@RequestBody OrderCreateDto order) {
+        System.out.println(order.getContactInfo().get("contactEmail"));
+        String result = orderService.orderRequest(order);
+        return result;
     }
 
 }

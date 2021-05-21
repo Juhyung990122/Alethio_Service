@@ -1,3 +1,5 @@
-INSERT INTO FOOD (id,type,stock,name) VALUES(1,'food',100,'떡볶이');
-INSERT INTO CLOTH (id,type,stock,name) VALUES(1,'cloth',100,'A청바지');
+INSERT INTO Foods (p_id,id,stock,name,type) VALUES(1,1,100,'떡볶이','food');
+INSERT INTO  Cloths (p_id,id,stock,name,type) VALUES(2,1,100,'A청바지','cloth');
+
+
 

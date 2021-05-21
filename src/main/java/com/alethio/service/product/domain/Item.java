@@ -1,20 +1,29 @@
 package com.alethio.service.product.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 
-@MappedSuperclass
+//@MappedSuperclass
+@NoArgsConstructor
+@Entity
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@NoArgsConstructor
+//@DiscriminatorColumn
+@Getter
+@Setter
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Item {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    @GeneratedValue
+    private Long p_id;
 
-    @Column(name="type")
     private String type;
-    @Column(name="stock")
+    private Long id;
     private Integer stock;
-    @Column(name="name")
     private String name;
-
 }
