@@ -1,4 +1,16 @@
 package com.alethio.service.product.domain;
 
-public class Cloth {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+
+@Getter
+@Entity
+@DiscriminatorValue("cloth")
+public class Cloth extends Item{
+
+    private Long id;
+
 }
