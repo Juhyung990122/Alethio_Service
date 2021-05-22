@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Long>{
     Item findByTypeAndId(String type,Long id);
+
 }
 
 

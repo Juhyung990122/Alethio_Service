@@ -24,4 +24,5 @@ public class Order {
     private String mobile;
     private String itemType;
     private Integer itemId;
+
 }

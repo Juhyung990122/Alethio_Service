@@ -12,5 +12,4 @@ import javax.persistence.*;
 @Table(name="Cloths")
 @NoArgsConstructor
 public class Cloth extends Item {
-
 }
