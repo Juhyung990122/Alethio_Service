@@ -9,9 +9,11 @@ import com.alethio.service.product.domain.Item;
 import com.alethio.service.product.repository.ItemRepository;
 
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,16 +41,9 @@ public class OrderService {
 
         product.setStock(product.getStock()-1);
         itemRepository.save(product);
-        // trim 처리 하기
-        orderRepository.save(order.toEntity());
+        Order saveOrder = orderRepository.save(order.toEntity());
 
-        OrderReturnDto result = new OrderReturnDto();
-        result.setOrderStatus("success");
-        result.setContactInfo(contactInfo);
-//        List<Order> orderedItems = orderRepository.findAllByContactEmail(contactInfo.getContactEmail());
-//        for(int i = 0; i < orderedItems.size();i++ ){
-//            System.out.println(orderedItems.get(i));
-//        }
+        OrderReturnDto result = saveOrder.toDto();
         return result;
     }
 

@@ -1,10 +1,7 @@
 package com.alethio.service.order.dto;
 
 import com.alethio.service.order.domain.Order;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashMap;
 
@@ -22,6 +19,7 @@ public class OrderCreateDto {
         private String mobile;
     }
     @Getter
+    @Setter
     public static class items{
         private Long id;
         private String itemType;
@@ -32,9 +30,10 @@ public class OrderCreateDto {
                 .contactEmail(contactInfo.contactEmail)
                 .contactName(contactInfo.contactName.trim())
                 .mobile(contactInfo.mobile.trim())
-                .id(items.id)
+                .itemId(items.id)
                 .itemType(items.itemType)
                 .build();
 
     }
+
 }

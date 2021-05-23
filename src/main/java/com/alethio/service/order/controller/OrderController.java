@@ -19,7 +19,6 @@ public class OrderController {
 
     @PostMapping ("/order")
     public OrderReturnDto OrderItem(@RequestBody OrderCreateDto order) throws IOException {
-        //System.out.println(order.getContactInfo().get("contactEmail"));
         OrderReturnDto result = orderService.orderRequest(order);
         return result;
     }
