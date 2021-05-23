@@ -1,14 +1,13 @@
 package com.alethio.service.order.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder(builderMethodName = "RestockBuilder")
 public class Restock {
 
     @Id
@@ -16,6 +15,7 @@ public class Restock {
     private Long requestId;
 
     private Long id;
+    @Column(unique = true)
     private String name;
     private String encryptName;
     private Integer qty;

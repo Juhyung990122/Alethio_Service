@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReqRecieveRepository extends JpaRepository<Restock,Long> {
+public interface RestockRepository extends JpaRepository<Restock,Long> {
+    Restock findByName(String name);
 }

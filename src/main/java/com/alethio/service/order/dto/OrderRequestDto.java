@@ -1,13 +1,15 @@
 package com.alethio.service.order.dto;
 
 import com.alethio.service.order.domain.Order;
+import com.alethio.service.order.domain.Restock;
+import com.alethio.service.product.domain.Item;
 import lombok.*;
 
 import java.util.HashMap;
 
 @Getter
 @NoArgsConstructor
-public class OrderCreateDto {
+public class OrderRequestDto {
 
     private contactInfo contactInfo;
     private items items;
@@ -25,7 +27,26 @@ public class OrderCreateDto {
         private String itemType;
     }
 
-    public Order toEntity(){
+    public Restock toRestockEntity(Item item){
+        if(item.getType() == "food"){
+            return Restock.RestockBuilder()
+                    .id(item.getId())
+                    .name(item.getName())
+                    .encryptName(item.getName()+"123")
+                    .qty(100)
+                    .build();
+        }
+        else{
+            return Restock.RestockBuilder()
+                    .id(item.getId())
+                    .name(item.getName())
+                    .encryptName("123"+item.getName())
+                    .qty(100)
+                    .build();
+        }
+    }
+
+    public Order toOrderEntity(){
         return Order.OrderBuilder()
                 .contactEmail(contactInfo.contactEmail)
                 .contactName(contactInfo.contactName.trim())

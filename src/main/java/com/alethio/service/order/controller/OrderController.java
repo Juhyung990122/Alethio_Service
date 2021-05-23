@@ -1,6 +1,6 @@
 package com.alethio.service.order.controller;
 
-import com.alethio.service.order.dto.OrderCreateDto;
+import com.alethio.service.order.dto.OrderRequestDto;
 import com.alethio.service.order.dto.OrderReturnDto;
 import com.alethio.service.order.service.OrderService;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class OrderController {
 
 
     @PostMapping ("/order")
-    public ResponseEntity<?> OrderItem(@RequestBody OrderCreateDto order) throws IOException {
+    public ResponseEntity<?> OrderItem(@RequestBody OrderRequestDto order) throws IOException {
         OrderReturnDto result = orderService.orderRequest(order);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
