@@ -10,5 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name="Foods")
 @NoArgsConstructor
+@DiscriminatorValue("food")
 public class Food extends Item {
 }

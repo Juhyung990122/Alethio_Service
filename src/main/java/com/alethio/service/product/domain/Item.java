@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-//@Inheritance(strategy=InheritanceType.JOINED)
-//@DiscriminatorColumn(name="type")
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn
 public abstract class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

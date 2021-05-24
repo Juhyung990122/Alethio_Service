@@ -11,5 +11,6 @@ import javax.persistence.*;
 @Entity
 @Table(name="Cloths")
 @NoArgsConstructor
+@DiscriminatorValue("cloth")
 public class Cloth extends Item {
 }

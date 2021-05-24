@@ -13,7 +13,6 @@ public class OrderRequestDto {
 
     private contactInfo contactInfo;
     private items items;
-    //해시맵말고 좀더 깔끔한 형태 없나 찾아보기.
     @Getter
     public static class contactInfo{
         private String contactEmail;
