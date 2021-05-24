@@ -10,13 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.NestedServletException;
 
-import java.util.Objects;
-
-import static org.junit.Assert.*;
+import javax.servlet.ServletException;
+import java.util.NoSuchElementException;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -65,8 +64,8 @@ public class OrderControllerTest {
                 .andDo(print());
     }
 
-    @Test
-    public void 주문테스트_재고없음() throws Exception {
+    @Test(expected= NoSuchElementException.class)
+    public void 주문테스트_재고없음() throws Throwable {
         String NoStockTestData = "{\n" +
                 "    \"contactInfo\": {\n" +
                 "        \"contactEmail\": \"test@test.com\",\n" +
@@ -78,11 +77,16 @@ public class OrderControllerTest {
                 "        \"id\": 2\n" +
                 "    }\n" +
                 "}";
+        try {
         mvc.perform(post("/order")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(NoStockTestData))
                 .andExpect(status().isInternalServerError())
-                .andReturn();
+                .andDo(print());}
+        catch (NestedServletException e) {
+            System.out.println(e.getCause());
+            throw e.getCause();
+        }
     }
 
 }

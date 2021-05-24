@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.Min;
 
 
 @NoArgsConstructor
 @Entity
 @Getter
 @Setter
-//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn
 public abstract class Item {
@@ -22,6 +21,7 @@ public abstract class Item {
     private Long p_id;
     private Long id;
     private String name;
+    @Min(value = 0)
     private Integer stock;
     private String type;
 }

@@ -3,8 +3,6 @@ package com.alethio.service.order.dto;
 import com.alethio.service.order.domain.Order;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
