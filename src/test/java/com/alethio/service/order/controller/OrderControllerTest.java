@@ -2,7 +2,6 @@ package com.alethio.service.order.controller;
 
 
 import com.alethio.service.product.domain.Food;
-import com.alethio.service.product.domain.Item;
 import com.alethio.service.product.repository.ItemRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,11 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.NestedServletException;
 
-import javax.servlet.ServletException;
 import java.util.NoSuchElementException;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 

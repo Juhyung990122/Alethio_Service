@@ -1,6 +1,5 @@
 package com.alethio.service.order.dto;
 
-import com.alethio.service.order.domain.Order;
 import lombok.*;
 
 @Getter

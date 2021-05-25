@@ -9,17 +9,9 @@ import com.alethio.service.order.repository.RestockRepository;
 import com.alethio.service.product.domain.Item;
 import com.alethio.service.product.repository.ItemRepository;
 
-import org.h2.message.DbException;
-import org.hibernate.JDBCException;
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionSystemException;
 
-import javax.persistence.RollbackException;
-import javax.xml.crypto.Data;
-import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
 @Service
