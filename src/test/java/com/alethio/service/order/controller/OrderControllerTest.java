@@ -117,6 +117,7 @@ public class OrderControllerTest {
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
         } catch (NestedServletException e) {
+            System.out.println(e.getCause());
             throw e.getCause();
         } finally {
             itemRepository.delete(testProduct);
@@ -144,6 +145,7 @@ public class OrderControllerTest {
                     .andExpect(status().isInternalServerError())
                     .andDo(print());}
         catch (NestedServletException e) {
+            System.out.println(e.getCause());
             throw e.getCause();
         }
     }
