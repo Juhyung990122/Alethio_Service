@@ -9,10 +9,17 @@ import com.alethio.service.order.repository.RestockRepository;
 import com.alethio.service.product.domain.Item;
 import com.alethio.service.product.repository.ItemRepository;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.h2.message.DbException;
+import org.hibernate.JDBCException;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 
+import javax.persistence.RollbackException;
+import javax.xml.crypto.Data;
+import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
 @Service
@@ -28,22 +35,37 @@ public class OrderService {
         this.restockRepository = restockRepository;
     }
 
-    public OrderReturnDto orderRequest(OrderRequestDto order) throws NoSuchElementException {
+    public OrderReturnDto orderRequest(OrderRequestDto order) throws NoSuchElementException{
         OrderRequestDto.items items = order.getItems();
 
         Item product = itemRepository.findByTypeAndId(items.getItemType(),items.getId());
         try {
+
+            // 재고 및 입고요청
             product.setStock(product.getStock() - 1);
+
+            if (product.getStock() <= 9){
+                if (restockRepository.findByName(product.getName()) == null){
+                    restockRepository.save(order.toRestockEntity(product));
+                }
+            }
+
             itemRepository.save(product);
-            Order saveOrder = orderRepository.save(order.toOrderEntity());
-            OrderReturnDto result = saveOrder.toDto();
+
+            // 주문
+            Order savedOrder = orderRepository.save(order.toOrderEntity());
+            OrderReturnDto result = savedOrder.toDto();
             return result;
-        }
-        catch (Exception e){
-            restockRepository.save(order.toRestockEntity(product));
+
+        } catch (NullPointerException e){
+            // 상품 없음
+            throw new NoSuchElementException("등록되지 않은 상품입니다.");
+
+        } catch (TransactionSystemException e) {
+            // 재고 부족
             throw new NoSuchElementException("재고가 없습니다.");
+
         }
 
     }
-
 }

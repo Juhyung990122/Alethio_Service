@@ -17,7 +17,7 @@ public class Restock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long requestId;
+    private long restockId;
 
     private Long id;
     @Column(unique = true)

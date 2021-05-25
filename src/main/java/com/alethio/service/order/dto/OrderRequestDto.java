@@ -27,6 +27,7 @@ public class OrderRequestDto {
     }
 
     public Restock toRestockEntity(Item item){
+        //음식
         if(item.getType() == "food"){
             return Restock.RestockBuilder()
                     .id(item.getId())
@@ -35,6 +36,7 @@ public class OrderRequestDto {
                     .qty(100)
                     .build();
         }
+        //옷
         else{
             return Restock.RestockBuilder()
                     .id(item.getId())

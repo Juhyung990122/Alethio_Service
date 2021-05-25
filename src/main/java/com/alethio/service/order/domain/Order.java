@@ -18,7 +18,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long orderId;
 
     private String contactEmail;
     private String contactName;
@@ -31,7 +31,7 @@ public class Order {
                 .contactEmail(contactEmail)
                 .contactName(contactName.trim())
                 .mobile(mobile.trim())
-                .itemId(id)
+                .itemId(itemId)
                 .itemType(itemType)
                 .build();
     }
