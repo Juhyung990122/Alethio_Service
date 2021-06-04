@@ -1,21 +1,17 @@
 package com.alethio.service.order.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Builder(builderMethodName = "RestockBuilder")
-@AllArgsConstructor
 @NoArgsConstructor
-public class Restock {
+@AllArgsConstructor
+public abstract class Restock {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long restockId;
 
     private Long id;
@@ -24,4 +20,13 @@ public class Restock {
     private String encryptName;
     private Integer qty;
 
+    public Restock(Long id, String name, String encryptName, Integer qty){
+        super();
+        this.id = id;
+        this.name = name;
+        this.encryptName = encryptName;
+        this.qty = qty;
+    }
+
 }
+

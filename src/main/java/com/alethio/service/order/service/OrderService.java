@@ -1,6 +1,6 @@
 package com.alethio.service.order.service;
 
-import com.alethio.service.order.domain.Order;
+import com.alethio.service.order.domain.*;
 import com.alethio.service.order.dto.OrderRequestDto;
 import com.alethio.service.order.dto.OrderReturnDto;
 import com.alethio.service.order.repository.OrderRepository;
@@ -21,7 +21,8 @@ public class OrderService {
     private final ItemRepository itemRepository;
     private final RestockRepository restockRepository;
 
-    public OrderService(OrderRepository orderRepository, ItemRepository itemRepository, RestockRepository restockRepository) {
+
+    public OrderService(OrderRepository orderRepository, ItemRepository itemRepository,RestockRepository restockRepository) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
         this.restockRepository = restockRepository;
@@ -36,10 +37,9 @@ public class OrderService {
             // 재고 및 입고요청
             product.setStock(product.getStock() - 1);
 
-            if (product.getStock() <= 9){
-                if (restockRepository.findByName(product.getName()) == null){
-                    restockRepository.save(order.toRestockEntity(product));
-                }
+            if (0 < product.getStock() && product.getStock() < 10){
+                RestockCreate requestRestock = new RestockCreate();
+                Restock savedRestock= restockRepository.save(requestRestock.create(product));
             }
 
             itemRepository.save(product);
@@ -56,7 +56,6 @@ public class OrderService {
         } catch (TransactionSystemException e) {
             // 재고 부족
             throw new NoSuchElementException("재고가 없습니다.");
-
         }
 
     }

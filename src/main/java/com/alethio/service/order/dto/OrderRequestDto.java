@@ -25,26 +25,6 @@ public class OrderRequestDto {
         private String itemType;
     }
 
-    public Restock toRestockEntity(Item item){
-        //음식
-        if(item.getType() == "food"){
-            return Restock.RestockBuilder()
-                    .id(item.getId())
-                    .name(item.getName())
-                    .encryptName(item.getName()+"123")
-                    .qty(100)
-                    .build();
-        }
-        //옷
-        else{
-            return Restock.RestockBuilder()
-                    .id(item.getId())
-                    .name(item.getName())
-                    .encryptName("123"+item.getName())
-                    .qty(100)
-                    .build();
-        }
-    }
 
     public Order toOrderEntity(){
         return Order.OrderBuilder()
