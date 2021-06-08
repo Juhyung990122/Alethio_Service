@@ -7,6 +7,7 @@ import com.alethio.service.order.repository.OrderRepository;
 
 import com.alethio.service.order.repository.RestockRepository;
 import com.alethio.service.product.domain.Item;
+import com.alethio.service.product.domain.ItemType;
 import com.alethio.service.product.repository.ItemRepository;
 
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class OrderService {
         OrderRequestDto.items items = order.getItems();
 
         Item product = itemRepository.findByTypeAndId(items.getItemType(),items.getId());
+
         try {
 
             // 재고 및 입고요청

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Cloth extends Item {
 
     @Builder
-    public Cloth( Long id, String name,Integer stock, String type) {
-        super( id, name, stock, type);
+    public Cloth( Long id, String name,Integer stock,ItemType type) {
+        super( id, name, stock,type);
     }
 }

@@ -12,8 +12,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @DiscriminatorValue("food")
 public class Food extends Item {
+
     @Builder
-    public Food( Long id, String name,Integer stock, String type) {
-        super( id, name, stock, type);
+    public Food( Long id, String name,Integer stock, ItemType type) {
+        super(id, name, stock,type);
     }
 }

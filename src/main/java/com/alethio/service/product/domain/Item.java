@@ -20,12 +20,14 @@ public abstract class Item {
     private String name;
     @Min(value = 0)
     private Integer stock;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private ItemType type;
 
-    public Item(Long id, String name,Integer stock, String type) {
+    public Item(Long id, String name,Integer stock,ItemType type) {
         this.id = id;
         this.name = name;
-        this.type = type;
         this.stock = stock;
+        this.type = type;
     }
+
 }

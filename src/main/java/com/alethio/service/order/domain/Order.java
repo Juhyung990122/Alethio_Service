@@ -1,6 +1,7 @@
 package com.alethio.service.order.domain;
 
 import com.alethio.service.order.dto.OrderReturnDto;
+import com.alethio.service.product.domain.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class Order {
     private String contactEmail;
     private String contactName;
     private String mobile;
-    private String itemType;
+    private ItemType itemType;
     private Long itemId;
 
     public OrderReturnDto toDto(){

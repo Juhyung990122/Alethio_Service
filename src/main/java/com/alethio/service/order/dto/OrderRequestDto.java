@@ -3,6 +3,7 @@ package com.alethio.service.order.dto;
 import com.alethio.service.order.domain.Order;
 import com.alethio.service.order.domain.Restock;
 import com.alethio.service.product.domain.Item;
+import com.alethio.service.product.domain.ItemType;
 import lombok.*;
 
 
@@ -22,7 +23,7 @@ public class OrderRequestDto {
     @Setter
     public static class items{
         private Long id;
-        private String itemType;
+        private ItemType itemType;
     }
 
 

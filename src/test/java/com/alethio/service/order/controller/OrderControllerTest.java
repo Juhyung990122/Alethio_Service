@@ -2,6 +2,7 @@ package com.alethio.service.order.controller;
 
 
 import com.alethio.service.product.domain.Food;
+import com.alethio.service.product.domain.ItemType;
 import com.alethio.service.product.repository.ItemRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -70,7 +71,7 @@ public class OrderControllerTest {
 
     @Test
     public void 주문테스트_입고요청() throws Exception {
-        Food testProduct = new Food(Long.valueOf("3"),"테스트떡볶이",10,"food");
+        Food testProduct = new Food(Long.valueOf("3"),"테스트떡볶이",10, ItemType.food);
         itemRepository.save(testProduct);
         String clothTestData = "{\n" +
                 "    \"contactInfo\": {\n" +
@@ -94,10 +95,9 @@ public class OrderControllerTest {
 
     }
 
-
     @Test(expected= NoSuchElementException.class)
     public void 주문테스트_재고없음() throws Throwable {
-        Food testProduct = new Food(Long.valueOf("3"),"테스트떡볶이",0,"food");
+        Food testProduct = new Food(Long.valueOf("3"),"테스트떡볶이",0,ItemType.food);
         itemRepository.save(testProduct);
         String NoStockTestData = "{\n" +
                 "    \"contactInfo\": {\n" +
